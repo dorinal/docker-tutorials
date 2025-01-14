@@ -124,8 +124,8 @@ docker network inspect webapp_network
 
 Attach to the `webserver` container and verify the database is reachable:
 ```bash
-docker exec -it webserver sh
-apk add --no-cache postgresql-client
+docker exec -it ubuntu sh
+apt update -y && apt install -y postgresql-client
 psql -h db -U user -d mydb -c '\l'
 ```
 
