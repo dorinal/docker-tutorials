@@ -17,5 +17,4 @@ jobs:
     - name: Build the Docker image
       run: |
         cd nginx-image/
-        docker build . --file Dockerfile --tag my-image-name:$(date -I)
-        docker tag my-image-name:$(date -I) ${{ github.event.inputs.docker_username }}/my-image-name:latest
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
