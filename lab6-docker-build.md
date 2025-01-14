@@ -30,7 +30,7 @@ You are tasked with creating a Docker container for a simple Python application 
 
        if operation == "add":
            print(f"The result is: {num1 + num2}")
-       elif operation == "subtract":
+       elif operation == "substract":
            print(f"The result is: {num1 - num2}")
        elif operation == "multiply":
            print(f"The result is: {num1 * num2}")
