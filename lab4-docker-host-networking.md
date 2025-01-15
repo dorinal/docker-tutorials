@@ -47,6 +47,7 @@ apt-get update
 Install the `iproute2` package to gain access to the `ip` command:
 ```bash
 apt-get install -y iproute2
+apt-get install -y iputils-ping
 ```
 
 #### **Step 2.4: Verify Installation**

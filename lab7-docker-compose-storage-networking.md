@@ -34,6 +34,8 @@ services:
   db:
     image: postgres:latest
     container_name: postgres-db
+    ports:
+     - "5432:5432"
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
@@ -56,6 +58,8 @@ services:
       - ./app:/usr/src/app
     networks:
       - app-network
+    ports:
+      - "5000:5000"
     depends_on:
       - db
 
@@ -68,6 +72,25 @@ networks:
 secrets:
   db_password:
     file: ./secrets/db_password.txt
+```
+
+Dockerfile
+
+```
+# syntax=docker/dockerfile:1
+FROM ubuntu:22.04
+
+# install app dependencies
+RUN apt-get update && apt-get install -y python3 python3-pip
+RUN pip install flask==3.0.*
+
+# install app
+COPY app.py /
+
+# final configuration
+ENV FLASK_APP=app
+EXPOSE 8000
+CMD ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
 ```
 
 **`app/app.py`**
@@ -134,7 +157,7 @@ supersecretpassword
 #### **Part 1: Networking**
 1. **Start the Services**:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
 2. **Inspect the Network**:
@@ -160,11 +183,11 @@ supersecretpassword
 1. **Check Persistent Data**:
    - Stop and remove the containers:
      ```bash
-     docker-compose down
+     docker compose down
      ```
    - Start the services again:
      ```bash
-     docker-compose up
+     docker compose up
      ```
    - Verify that the data in the `users` table is still intact (persistent storage).
 
@@ -176,7 +199,7 @@ supersecretpassword
 
 3. **Clean Up the Volume**:
    ```bash
-   docker-compose down -v
+   docker compose down -v
    ```
 
 #### **Part 3: Secrets**
@@ -197,7 +220,7 @@ supersecretpassword
    - Modify the `db_password.txt` file with a new password.
    - Restart the `db` service to reflect the change:
      ```bash
-     docker-compose up -d
+     docker compose up -d
      ```
 
 4. **Test with Incorrect Secrets**:
@@ -210,5 +233,5 @@ supersecretpassword
 #### **Clean-Up**
 To remove all containers, networks, volumes, and secrets created during the lab:
 ```bash
-docker-compose down --volumes --remove-orphans
+docker compose down --volumes --remove-orphans
 ```

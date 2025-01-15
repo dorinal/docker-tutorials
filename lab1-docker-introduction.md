@@ -28,15 +28,11 @@ sudo docker run hello-world
 ```
 **Modify the user permission so that you can run docker command without sudo**
 
-```
-sudo usermod -a -G docker azureuser
-```
-
 For AWS Ubuntu instance
 ```
 sudo usermod -a -G docker ubuntu
 ```
-
+Logout and Login before executing below commands
 ---
 
 ### **Assignment Tasks**

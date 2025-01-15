@@ -6,7 +6,7 @@
 #### **Build and Start the Services**
 1. Build and start the services:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
 2. Verify the services:
@@ -23,17 +23,17 @@
 
 2. **Stop services**:
    ```bash
-   docker-compose stop
+   docker compose stop
    ```
 
 3. **Restart services**:
    ```bash
-   docker-compose restart
+   docker compose restart
    ```
 
 4. **Remove containers and networks**:
    ```bash
-   docker-compose down
+   docker compose down
    ```
 
 ---
@@ -46,7 +46,7 @@
 
 2. Rebuild and restart the service:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
 3. Verify the updated response.
@@ -66,7 +66,7 @@
 
 2. Reload Nginx:
    ```bash
-   docker-compose restart nginx
+   docker compose restart nginx
    ```
 
 3. Test the custom 404 error by visiting an invalid path: `http://localhost:8080/nonexistent`.
@@ -76,7 +76,7 @@
 #### **Scaling the Backend Service**
 1. Scale the backend service to 3 instances:
    ```bash
-   docker-compose up --scale backend=3
+   docker compose up --scale backend=3
    ```
 
 2. Observe the container distribution:
@@ -91,7 +91,7 @@
 #### **Clean Up**
 1. Stop and remove all containers, networks, and volumes:
    ```bash
-   docker-compose down -v
+   docker compose down -v
    ```
 
 2. Optionally, remove built images:
