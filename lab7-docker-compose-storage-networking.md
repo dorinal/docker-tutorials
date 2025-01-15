@@ -34,6 +34,8 @@ services:
   db:
     image: postgres:latest
     container_name: postgres-db
+    ports:
+     - "5432:5432"
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: myuser
@@ -56,6 +58,8 @@ services:
       - ./app:/usr/src/app
     networks:
       - app-network
+    ports:
+      - "5000:5000"
     depends_on:
       - db
 
