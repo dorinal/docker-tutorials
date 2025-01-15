@@ -70,6 +70,25 @@ secrets:
     file: ./secrets/db_password.txt
 ```
 
+Dockerfile
+
+```
+# syntax=docker/dockerfile:1
+FROM ubuntu:22.04
+
+# install app dependencies
+RUN apt-get update && apt-get install -y python3 python3-pip
+RUN pip install flask==3.0.*
+
+# install app
+COPY app.py /
+
+# final configuration
+ENV FLASK_APP=app
+EXPOSE 8000
+CMD ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
+```
+
 **`app/app.py`**
 ```python
 from flask import Flask
